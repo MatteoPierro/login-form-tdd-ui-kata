@@ -10,7 +10,7 @@ import static com.github.mvysny.kaributesting.v8.LocatorJ._get;
 import static com.github.mvysny.kaributesting.v8.LocatorJ._setValue;
 import static org.junit.jupiter.api.Assertions.*;
 
-class LoginUITest {
+class LoginUIAcceptanceTest {
     @BeforeEach
     void beforeEach() {
         MockVaadin.setup(LoginUI::new);
