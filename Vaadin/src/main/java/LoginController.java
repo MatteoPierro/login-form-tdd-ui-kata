@@ -8,6 +8,7 @@ public class LoginController {
     }
 
     public void usernameUpdated(String username) {
-        loginView.setUsername("aaaaaaaaaaaaaaaaaaaa");
+        if (username.length() > 20)
+            loginView.setUsername("aaaaaaaaaaaaaaaaaaaa");
     }
 }
