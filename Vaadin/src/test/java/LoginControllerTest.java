@@ -9,9 +9,9 @@ public class LoginControllerTest {
         LoginView loginView = mock(LoginView.class);
         LoginController loginController = new LoginController(loginView);
 
-        loginController.usernameUpdated("aaaaaaaaaaaaaaaaaaaabbbbb");
+        loginController.usernameUpdated("caaaaaaaaaaaaaaaaaaabbbbb");
 
-        verify(loginView).setUsername("aaaaaaaaaaaaaaaaaaaa");
+        verify(loginView).setUsername("caaaaaaaaaaaaaaaaaaa");
     }
 
     @Test
