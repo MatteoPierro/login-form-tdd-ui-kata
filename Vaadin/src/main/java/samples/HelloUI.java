@@ -54,7 +54,7 @@ public class HelloUI extends UI {
         }
     }
 
-    @WebServlet(urlPatterns = "/*", name = "HelloUIServlet", asyncSupported = true)
+//    @WebServlet(urlPatterns = "/*", name = "HelloUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = HelloUI.class, productionMode = false)
     public static class HelloUIServlet extends VaadinServlet {
 
