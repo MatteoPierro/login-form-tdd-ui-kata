@@ -1,6 +1,7 @@
 import LoginView.LoginView;
 
 public class LoginController {
+    public static final int MAX_USERNAME_LENGTH = 20;
     private final LoginView loginView;
 
     public LoginController(LoginView loginView) {
@@ -8,8 +9,8 @@ public class LoginController {
     }
 
     public void usernameUpdated(String username) {
-        if (username.length() > 20) {
-            loginView.setUsername(username.substring(0, 20));
+        if (username.length() > MAX_USERNAME_LENGTH) {
+            loginView.setUsername(username.substring(0, MAX_USERNAME_LENGTH));
         }
     }
 }
