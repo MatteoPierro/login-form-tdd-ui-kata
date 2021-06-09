@@ -1,16 +1,15 @@
 package samples;
 
-import javax.servlet.annotation.WebServlet;
-
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
+
+import javax.servlet.annotation.WebServlet;
 
 /**
  * This UI is the application entry point.
@@ -26,19 +25,33 @@ public class HelloUI extends UI {
      */
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        final VerticalLayout layout = new VerticalLayout();
+        Navigator navigator = new Navigator(this, this);
 
-        final TextField name = new TextField();
-        name.setCaption("Type your name here:");
+        // Create and register the views
+        navigator.addView("", new HelloView(navigator));
+        navigator.addView("/success", new SuccessView());
+    }
 
-        Button button = new Button("Click Me");
-        button.addClickListener(e -> {
-            layout.addComponent(new Label("Thanks " + name.getValue() + ", it works!"));
-        });
+    public static class HelloView extends VerticalLayout implements View {
+        public HelloView(Navigator navigator) {
+            final TextField name = new TextField();
+            name.setCaption("Type your name here:");
 
-        layout.addComponents(name, button);
+            Button button = new Button("Click Me");
+            button.addClickListener(e -> {
+                navigator.navigateTo("/success/name="+name.getValue());
+            });
 
-        setContent(layout);
+            addComponents(name, button);
+        }
+    }
+
+    public static class SuccessView extends VerticalLayout implements View {
+
+        @Override
+        public void enter(ViewChangeListener.ViewChangeEvent event) {
+            addComponent(new Label("Thanks " + event.getParameterMap().get("name") + ", it works!"));
+        }
     }
 
     @WebServlet(urlPatterns = "/*", name = "HelloUIServlet", asyncSupported = true)
