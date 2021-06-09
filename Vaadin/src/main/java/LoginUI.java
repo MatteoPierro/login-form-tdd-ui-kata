@@ -27,7 +27,7 @@ public class LoginUI extends UI {
         layout.addComponent(new TextField());
         setContent(layout);
     }
-    
+
     @WebServlet(urlPatterns = "/*", name = "LoginUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = LoginUI.class, productionMode = false)
     public static class LoginUIServlet extends VaadinServlet {
