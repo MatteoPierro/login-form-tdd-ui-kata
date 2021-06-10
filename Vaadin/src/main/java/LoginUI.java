@@ -1,13 +1,11 @@
 import LoginView.LoginView;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.data.HasValue;
-import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.*;
+import com.vaadin.ui.TextField;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -29,12 +27,7 @@ public class LoginUI extends UI implements LoginView {
         LoginController loginController = new LoginController(this);
         VerticalLayout layout = new VerticalLayout();
         usernameField = new TextField();
-        usernameField.addValueChangeListener(new HasValue.ValueChangeListener<String>() {
-            @Override
-            public void valueChange(HasValue.ValueChangeEvent<String> valueChangeEvent) {
-                loginController.usernameUpdated(valueChangeEvent.getValue());
-            }
-        });
+        usernameField.addValueChangeListener(e -> loginController.usernameUpdated(e.getValue()));
         layout.addComponent(usernameField);
         setContent(layout);
     }
